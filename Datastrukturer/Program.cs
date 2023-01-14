@@ -11,26 +11,27 @@
         static private (bool, string[]) Op_3(int indx, string tilsat, string[] strang)
         {
             string[] temp = new string[strang.Length + 1];
-            if (indx <= temp.Length)
+            if (indx <= temp.Length && indx >= 0)
             {
-            for (int i = 0; i <= temp.Length; i++)
-            {
-                if (i < indx)
+                for (int i = 0; i < temp.Length; i++)
                 {
-                    temp[i] = strang[i];
+                    if (i < indx)
+                    {
+                        temp[i] = strang[i];
 
+                    }
+                    else if (i == indx)
+                    {
+                        temp[i] = tilsat;
+                    }
+                    else
+                    {
+                        
+                        temp[i] = strang[i-1];
+                    }
                 }
-                else if (i == indx)
-                {
-                    temp[i] = tilsat;
-                }
-                else
-                {
-                    temp[i] = strang[i-1];
-                }
-            }
-            strang= temp;
-            return (true, strang);
+            
+                return (true, temp);
             }
             else { return (false, strang); }
         }
